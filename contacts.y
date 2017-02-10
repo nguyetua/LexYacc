@@ -1,9 +1,6 @@
 ﻿%code top {
-	
 #include <stdio.h>
-
 }
-
 
 %union {
 	
@@ -28,13 +25,17 @@
 %type<sValue> STREET_TYPE
 %token ZIPCODE
 %type<iValue> ZIPCODE
+%type<sValue> contact
 
 %%
 
-	
+file :	contact
+|	contact file
+;
+contact:	NAME NAME STREET_NUM STREET_NAME STREET_TYPE ZIPCODE
+;
 
 %%
-
 int main(void){
 	yyparse();
 }
